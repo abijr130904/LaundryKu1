@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package test;
+package frame;
 
 import com.mysql.cj.protocol.Resultset;
 import java.awt.Color;
@@ -959,9 +959,9 @@ public class formTransaksi extends javax.swing.JFrame {
 //        System.out.println("pembayaran: "+pembayaran);
 //        System.out.println("kembalian: "+kembaliaan);
         
-        int statusPengirman = 0;
+        int statusPengiriman = 0;
         if(ck_pengiriman.isSelected()){
-           statusPengirman = 1;
+           statusPengiriman = 1;
         }
         
         String getUID;
@@ -993,10 +993,10 @@ public class formTransaksi extends javax.swing.JFrame {
                 String sql1;
                 if (idEdit != 0) {
                     // update
-                    sql1 = "UPDATE transaksi SET tgl_transaksi=?, id_pelanggan=?, id_pegawai=?, dibayar_secara=?, status_laundry=?, status_pembayaran=?, grandTotal=?, biayaTambahan=?, diskon=?, totalPembayaran=?, pembayaran=?, kembalian=?,statusPengirman=?, tanggal_masuk=?, batas_waktu=?, alamat_pengiriman=? WHERE no_transaksi=?";
+                    sql1 = "UPDATE transaksi SET tgl_transaksi=?, id_pelanggan=?, id_pegawai=?, dibayar_secara=?, status_laundry=?, status_pembayaran=?, grandTotal=?, biayaTambahan=?, diskon=?, totalPembayaran=?, pembayaran=?, kembalian=?,statusPengiriman=?, tanggal_masuk=?, batas_waktu=?, alamat_pengiriman=? WHERE no_transaksi=?";
                 } else {
                     // Insert
-                    sql1 = "INSERT INTO transaksi (tgl_transaksi, id_pelanggan, id_pegawai, dibayar_secara, status_laundry, status_pembayaran, grandTotal, biayaTambahan, diskon, totalPembayaran, pembayaran, kembalian, statusPengirman, tanggal_masuk, batas_waktu, alamat_pengiriman) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    sql1 = "INSERT INTO transaksi (tgl_transaksi, id_pelanggan, id_pegawai, dibayar_secara, status_laundry, status_pembayaran, grandTotal, biayaTambahan, diskon, totalPembayaran, pembayaran, kembalian, statusPengiriman, tanggal_masuk, batas_waktu, alamat_pengiriman) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 }
 
                 PreparedStatement pst1 = conn.prepareStatement(sql1);
@@ -1020,7 +1020,7 @@ public class formTransaksi extends javax.swing.JFrame {
                 pst1.setInt(11, pembayaraan); // bayaran
     //            pst1.setInt(12, Integer.parseInt(txt_kembalian.getText().trim())); // kembalian
                 pst1.setInt(12, kembaliaan); // kembalian
-                pst1.setInt(13,statusPengirman);
+                pst1.setInt(13,statusPengiriman);
                 pst1.setDate(14, sqlDate);  //  tanggal_masuk
                 pst1.setDate(15, sqlDate1);  //  batas_waktu
                 pst1.setString(16, String.valueOf(txt_alamat.getText()));  // alamat_pengiriman
@@ -2028,7 +2028,7 @@ private int retrieveProdukId(String namaProduk) {
                             
                             cmb_statusPembayaran.setSelectedItem(rsTransaksi.getString("status_pembayaran"));
                             // Set other UI components...
-                            if (rsTransaksi.getInt("statusPengirman") != 0) {
+                            if (rsTransaksi.getInt("statusPengiriman") != 0) {
                                 ck_pengiriman.setSelected(true);                         
                             } else {
                                 ck_pengiriman.setSelected(false);                         

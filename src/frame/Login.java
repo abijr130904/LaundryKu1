@@ -19,6 +19,7 @@ import java.sql.SQLException;
 public class Login extends javax.swing.JFrame {
     private Timer t;
     public static String nameUser;
+    public static int userId;
 
     public Login() {
         initComponents();
@@ -194,6 +195,7 @@ public class Login extends javax.swing.JFrame {
                         this.setVisible(false);
                         nameUser = txt_username.getText();
                         String jabatan = rsLogin.getString("jabatan");
+                        userId = rsLogin.getInt("id_pegawai"); 
 
                         if (!"Owner".equals(jabatan)) {
                             insertAbsensiData();

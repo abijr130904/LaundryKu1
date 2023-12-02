@@ -290,7 +290,7 @@ private String getJabatanFromDatabase(String Jabatan) {
     private void btn_transaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_transaksiActionPerformed
             jLabel2.setText("Form Tambah Transaksi"); 
             jTabbedPane1.removeAll();
-            FormTransaksi panel = new FormTransaksi();
+            panelTransaksi panel = new panelTransaksi();
             jTabbedPane1.add(panel);
             panel.setVisible(true);
             jTabbedPane1.revalidate();

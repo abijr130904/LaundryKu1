@@ -54,7 +54,7 @@ public class panelMember extends javax.swing.JPanel {
     private void koneksi() {
     try {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project_laundryku", "root", "");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3307/project_laundryku", "root", "");
         stat = con.createStatement();
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, "Gagal terhubung ke database: " + e.getMessage());
