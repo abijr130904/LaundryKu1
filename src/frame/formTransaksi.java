@@ -1119,14 +1119,14 @@ public class formTransaksi extends javax.swing.JFrame {
                                 pst3.executeUpdate();
                             }
 
-    //                        System.out.println("idT: "+getUIDT);
-    //                        System.out.println("id_produk: " +id_produk);
-    //                        System.out.println("jenisProduk: "+jenisProduk);
-    //                        System.out.println("jumlah: "+jumlah);
-    //                        System.out.println("harga: "+harga);
-    //                        System.out.println("biayaTambahan: "+biayaTambahan);
-    //                        System.out.println("diskon: "+diskon);
-    //                        System.out.println("totalHarga: "+totalHarga);
+                            System.out.println("idT: "+getUIDT);
+                            System.out.println("id_produk: " +id_produk);
+                            System.out.println("jenisProduk: "+jenisProduk);
+                            System.out.println("jumlah: "+jumlah);
+                            System.out.println("harga: "+harga);
+                            System.out.println("biayaTambahan: "+biayaTambahan);
+                            System.out.println("diskon: "+diskon);
+                            System.out.println("totalHarga: "+totalHarga);
 
                         } catch (Exception e) {
     //                        JOptionPane.showMessageDialog(this, e.getMessage());

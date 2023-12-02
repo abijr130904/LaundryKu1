@@ -34,7 +34,7 @@ public class panelKeuangan extends javax.swing.JPanel {
     public panelKeuangan() {
         koneksi();
         initComponents();
-        tambahBarisBaru();
+//        tambahBarisBaru();
         tabel();
         
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -410,7 +410,7 @@ class CustomTableCellRenderer extends DefaultTableCellRenderer {
     }//GEN-LAST:event_txt_cariActionPerformed
     private static final long MILLIS_IN_DAY = 24 * 60 * 60 * 1000;
     
-    private static void tambahBarisBaru() {
+    public static void tambahBarisBaru() {
         try {
             Connection conn = koneksi.configDB();
 
@@ -469,7 +469,7 @@ class CustomTableCellRenderer extends DefaultTableCellRenderer {
     }
 
     private static int getTotalPemasukan(Connection conn) throws SQLException {
-        String pemasukanQuery = "SELECT COALESCE(SUM(total_pembayaran), 0) AS pemasukan " +
+        String pemasukanQuery = "SELECT COALESCE(SUM(totalPembayaran), 0) AS pemasukan " +
                 "FROM transaksi WHERE tgl_transaksi = ?;";
 
         try (java.sql.PreparedStatement pemasukanPst = conn.prepareStatement(pemasukanQuery)) {

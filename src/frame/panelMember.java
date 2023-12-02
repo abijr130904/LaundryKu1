@@ -47,7 +47,7 @@ public class panelMember extends javax.swing.JPanel {
         
         
         //
-        tambahTanggal();
+//        tambahTanggal();
         batasWaktuSetmember();
     }
    
@@ -795,7 +795,8 @@ private void tampilkanDetailMember(int idMember) {
            System.out.println("e: "+e);
        }
     }
-   private void tambahTanggal() {
+    
+   public static void tambahTanggalMember() {
             Timer timer = new Timer();
 //            Schedule the task to run every day at 12 pm
             timer.scheduleAtFixedRate(new TimerTask() {
@@ -825,7 +826,6 @@ private void tampilkanDetailMember(int idMember) {
         if (currentTime > twelvePmMillis) {
             twelvePmMillis += 24 * 60 * 60 * 1000; // Move to the next day if it's already past 12 pm
         }
-
         return twelvePmMillis - currentTime;
     }
 

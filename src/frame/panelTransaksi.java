@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
@@ -46,12 +48,9 @@ public class panelTransaksi extends javax.swing.JPanel {
         btnSearch = new javax.swing.JButton();
         btn_tambah = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jSpinner1 = new javax.swing.JSpinner();
-        jLabel1 = new javax.swing.JLabel();
-        jSpinner2 = new javax.swing.JSpinner();
-        jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        Show = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1140,16 +1139,6 @@ public class panelTransaksi extends javax.swing.JPanel {
             }
         });
 
-        jSpinner1.setModel(new javax.swing.SpinnerDateModel());
-
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jLabel1.setText("Tanggal");
-
-        jSpinner2.setModel(new javax.swing.SpinnerDateModel());
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jLabel2.setText("s/d");
-
         jButton2.setBackground(new java.awt.Color(153, 102, 0));
         jButton2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
@@ -1167,6 +1156,15 @@ public class panelTransaksi extends javax.swing.JPanel {
 
         jLabel3.setText("jLabel3");
 
+        Show.setBackground(new java.awt.Color(102, 153, 255));
+        Show.setForeground(new java.awt.Color(255, 255, 255));
+        Show.setText("SHOW");
+        Show.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ShowActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -1182,15 +1180,9 @@ public class panelTransaksi extends javax.swing.JPanel {
                                 .addComponent(jButton2)
                                 .addGap(8, 8, 8)
                                 .addComponent(jButton5)
-                                .addGap(62, 62, 62)
-                                .addComponent(jLabel1)
-                                .addGap(14, 14, 14)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel2)
-                                .addGap(7, 7, 7)
-                                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Show)
+                                .addGap(332, 332, 332)
                                 .addComponent(jLabel7)
                                 .addGap(0, 0, 0)
                                 .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1211,17 +1203,15 @@ public class panelTransaksi extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Show, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7)
                     .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -1240,41 +1230,31 @@ public class panelTransaksi extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
-
-    }//GEN-LAST:event_jButton2MousePressed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         edit();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void txt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_searchActionPerformed
-        // TODO add your handling code here:
-        String kataKunci = txt_search.getText();
-        cariData(kataKunci);
-    }//GEN-LAST:event_txt_searchActionPerformed
+    private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
 
-    private void tableAncestorResized(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_tableAncestorResized
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tableAncestorResized
-
-    private void btn_tambahMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_tambahMousePressed
-
-    private void btn_tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tambahActionPerformed
-       formTransaksi panel = new formTransaksi();
-       panel.setVisible(true); 
-    }//GEN-LAST:event_btn_tambahActionPerformed
-
-    private void jButton5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5MousePressed
+    }//GEN-LAST:event_jButton2MousePressed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         delete();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5MousePressed
+
+    private void btn_tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tambahActionPerformed
+        formTransaksi panel = new formTransaksi();
+        panel.setVisible(true);
+    }//GEN-LAST:event_btn_tambahActionPerformed
+
+    private void btn_tambahMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_tambahMousePressed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
@@ -1283,14 +1263,29 @@ public class panelTransaksi extends javax.swing.JPanel {
             java.sql.Connection conn = (Connection) koneksi.configDB();
             java.sql.PreparedStatement pst = conn.prepareStatement(sql);
             pst.setInt(1, WIDTH);
-            
+
             pst.execute();
-        } 
+        }
         catch (Exception e ) {
-             e.printStackTrace();
+            e.printStackTrace();
             JOptionPane.showMessageDialog(null, "gagal table: " + e.getMessage());
         }
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void tableAncestorResized(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_tableAncestorResized
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableAncestorResized
+
+    private void txt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_searchActionPerformed
+        // TODO add your handling code here:
+        String kataKunci = txt_search.getText();
+        cariData(kataKunci);
+    }//GEN-LAST:event_txt_searchActionPerformed
+
+    private void ShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowActionPerformed
+        // TODO add your handling code here:
+        showTableDetail();
+    }//GEN-LAST:event_ShowActionPerformed
     
     public void datatable() {
         DefaultTableModel tbl = new DefaultTableModel();
@@ -1319,19 +1314,31 @@ public class panelTransaksi extends javax.swing.JPanel {
                 // Retrieve the names for id_pelanggan and id_pegawai
                 String namaPelanggan = getNamaPelanggan(res.getString("id_pelanggan"));
                 String namaPegawai = getNamaPegawai(res.getString("id_pegawai"));
-
+                int status = res.getInt("transaksi.status_laundry");
+                String statusText;
+                
+                if (status == 0) {
+                        statusText = "baru";
+                    } else if (status == 1) {
+                        statusText = "prosses";
+                    } else if (status == 2) {
+                        statusText = "Penjadwalan";
+                    } else if (status == 3) {
+                        statusText = "Selesai";
+                    } else {
+                        statusText = "Sudah Lewat";
+                    }
+                
                 tbl.addRow(new Object[]{
                         res.getString("no_transaksi"),
                         namaPelanggan,
                         namaPegawai,
                         res.getString("status_pembayaran"),
-                        res.getString("status_laundry"),
+                        statusText,  // Use the variable here
                         res.getString("totalPembayaran"),
                         res.getString("tanggal_masuk"),
                         res.getString("batas_waktu"),
                 });
-                
-                
 //                rowCount();
             }
 
@@ -1343,9 +1350,6 @@ public class panelTransaksi extends javax.swing.JPanel {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "gagal table: " + e.getMessage());
         }    
-        
-        
-
     }
     
     // Method to get the name of pelanggan based on id_pelanggan
@@ -1461,29 +1465,7 @@ public class panelTransaksi extends javax.swing.JPanel {
         }
         return null;
     }
-
-    private void edit() {
-        SwingUtilities.invokeLater(() -> {
-           int selectedRow = table.getSelectedRow();
-
-           int idEdit;
-
-           if (selectedRow == -1) {
-               JOptionPane.showMessageDialog(null, "Mohon Pilih Barisan Yang di Table Ingin Diubah");
-               idEdit = 0; // Set idEdit to 0 if no row is selected
-           } else {
-               idEdit = Integer.parseInt((String) table.getValueAt(selectedRow, table.getColumn("NO").getModelIndex()));
-           }
-
-//           System.out.println("idEdit: " + idEdit);
-           
-           if (idEdit != 0) {
-            formTransaksi panel = new formTransaksi(idEdit);
-            panel.setVisible(true);
-           }
-        });
-    }
-    
+ 
     private void cariData(String kataKunci) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0); // Bersihkan baris yang sudah ada
@@ -1505,15 +1487,27 @@ public class panelTransaksi extends javax.swing.JPanel {
                 ResultSet res = pstmt.executeQuery();
 
                 while (res.next()) {
-//                    String namaPelanggan = getNamaPelanggan(res.getString("id_pelanggan"));
-//                    String namaPegawai = getNamaPegawai(res.getString("id_pegawai"));
+                    int status = res.getInt("transaksi.status_laundry");
+                    String statusText;
+
+                    if (status == 0) {
+                        statusText = "baru";
+                    } else if (status == 1) {
+                        statusText = "prosses";
+                    } else if (status == 2) {
+                        statusText = "Penjadwalan";
+                    } else if (status == 3) {
+                        statusText = "Selesai";
+                    } else {
+                        statusText = "Sudah Lewat";
+                    }
 
                     model.addRow(new Object[]{
                         res.getString("transaksi.no_transaksi"),
                         res.getString("pelanggan.nama"),
                         res.getString("user.Username"),
                         res.getString("transaksi.status_pembayaran"),
-                        res.getString("transaksi.status_laundry"),
+                        statusText,  // Use the variable here
                         res.getString("transaksi.totalPembayaran"),
                         res.getString("transaksi.tanggal_masuk"),
                         res.getString("transaksi.batas_waktu"),
@@ -1524,21 +1518,155 @@ public class panelTransaksi extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, e);
         }
     }    
+    
+    public static void changeStatus() {
+        tambahHari();
+//        updateStatusProsess();
+        updateStatusJadwalan();
+        updateStatusLewat();
+    }
+    
+    public static void tambahHari() {
+//        Timer timer = new Timer();
+////            Schedule the task to run every day at 12 pm
+//            timer.scheduleAtFixedRate(new TimerTask() {
+//                @Override
+//                public void run() {
+                    try {                   
+                        String sql = "UPDATE transaksi SET tanggal_masuk = DATE_ADD(tanggal_masuk, INTERVAL 1 DAY)";
+                        java.sql.Connection conn = (Connection) koneksi.configDB();
+                        PreparedStatement pst = conn.prepareStatement(sql);
+
+                        // Assuming currentDate is a java.sql.Date or java.util.Date object
+                        pst.executeUpdate();
+                        updateStatusProsess();
+                   } catch(Exception e) {
+//                        JOptionPane.showMessageDialog(this, "gagal set tanggal baru" + e.getMessage());
+                       System.out.println("e: "+e);
+                   }
+//                    System.out.println("lol");
+//                }
+//            }, getDelay(), 24 * 60 * 60 * 1000);
+    }
+    
+    private static long getDelay() {
+        // Calculate the delay until the next 12 pm
+        long currentTime = System.currentTimeMillis();
+        long twelvePmMillis = getTwelvePmMillis(currentTime);
+        
+        if (currentTime > twelvePmMillis) {
+            twelvePmMillis += 24 * 60 * 60 * 1000; // Move to the next day if it's already past 12 pm
+        }
+
+        return twelvePmMillis - currentTime;
+    }
+
+    private static long getTwelvePmMillis(long currentTime) {
+        // Calculate the milliseconds since midnight and add the remaining time until 12 pm
+        long midnightMillis = currentTime - (currentTime % (24 * 60 * 60 * 1000));
+        return midnightMillis + (12 * 60 * 60 * 1000);
+    }
+
+    private static void updateStatusProsess() {
+        
+                    try {                   
+                        String sql = "UPDATE transaksi SET status_laundry = 1";
+                        java.sql.Connection conn = (Connection) koneksi.configDB();
+                        PreparedStatement pst = conn.prepareStatement(sql);
+
+                        // Assuming currentDate is a java.sql.Date or java.util.Date object
+                        pst.executeUpdate();        
+                   } catch(Exception e) {
+//                        JOptionPane.showMessageDialog(this, "gagal set tanggal baru" + e.getMessage());
+                       System.out.println("e: "+e);
+                   }
+    }
+    
+     private static void updateStatusJadwalan() {
+        
+                    try {                   
+                        String sql = "UPDATE transaksi SET status_laundry = 2 where tanggal_masuk = batas_waktu";
+                        java.sql.Connection conn = (Connection) koneksi.configDB();
+                        PreparedStatement pst = conn.prepareStatement(sql);
+
+                        // Assuming currentDate is a java.sql.Date or java.util.Date object
+                        pst.executeUpdate();        
+                   } catch(Exception e) {
+//                        JOptionPane.showMessageDialog(this, "gagal set tanggal baru" + e.getMessage());
+                       System.out.println("e: "+e);
+                   }
+    }
+     
+     private static void updateStatusLewat() {
+        
+                    try {                   
+                        String sql = "UPDATE transaksi SET status_laundry = 4 where tanggal_masuk > batas_waktu";
+                        java.sql.Connection conn = (Connection) koneksi.configDB();
+                        PreparedStatement pst = conn.prepareStatement(sql);
+
+                        // Assuming currentDate is a java.sql.Date or java.util.Date object
+                        pst.executeUpdate();        
+                   } catch(Exception e) {
+//                        JOptionPane.showMessageDialog(this, "gagal set tanggal baru" + e.getMessage());
+                       System.out.println("e: "+e);
+                   }
+    }
+     
+     
+      private void edit() {
+        SwingUtilities.invokeLater(() -> {
+           int selectedRow = table.getSelectedRow();
+
+           int idEdit;
+
+           if (selectedRow == -1) {
+               JOptionPane.showMessageDialog(null, "Mohon Pilih Barisan Yang di Table Ingin Diubah");
+               idEdit = 0; // Set idEdit to 0 if no row is selected
+           } else {
+               idEdit = Integer.parseInt((String) table.getValueAt(selectedRow, table.getColumn("NO").getModelIndex()));
+           }
+
+//           System.out.println("idEdit: " + idEdit);
+           
+           if (idEdit != 0) {
+            formTransaksi panel = new formTransaksi(idEdit);
+            panel.setVisible(true);
+           }
+        });
+    }    
+     
+    private void showTableDetail() {
+        SwingUtilities.invokeLater(() -> {
+            int selectedRow = table.getSelectedRow();
+
+            int idShow;
+            
+            if (selectedRow == -1) {
+                JOptionPane.showMessageDialog(null, "Mohon Pilih Barisan Yang di Table Ingin Diubah");
+                idShow = 0;
+            } else {
+                idShow = Integer.parseInt((String) table.getValueAt(selectedRow, table.getColumn("NO").getModelIndex()));
+            }
+            // System.out.println("idEdit: " + idEdit);
+            if (idShow != 0) {
+                showTransaksi panel = new showTransaksi(idShow);
+                panel.setVisible(true);
+            }
+            System.out.println("idshow: "+idShow);
+        });
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Show;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btn_tambah;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTable table;
     private javax.swing.JTextField txt_search;
     // End of variables declaration//GEN-END:variables
